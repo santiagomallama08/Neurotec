@@ -1,6 +1,5 @@
 import Layout from "../components/Layout";
-import SectionTitle from "../components/SectionTitle";
-import Paragraph from "../components/Paragraph";
+import type { FC } from "react";
 
 // 🖼️ Imágenes para las referencias
 import ref1 from "../../assets/logo nego 4.png";
@@ -9,7 +8,18 @@ import ref3 from "../../assets/logo negro 2.png";
 import ref4 from "../../assets/logo negro 3.png";
 import ref5 from "../../assets/logo negro 4.png";
 
-const smriRefs = [
+// ✅ Tipos explícitos
+interface Reference {
+  img: string;
+  link: string;
+}
+
+interface ReferenceGalleryProps {
+  data: Reference[];
+}
+
+// ✅ Arrays tipados
+const smriRefs: Reference[] = [
   { img: ref1, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11612547/#pcn13736-sec-0025" },
   { img: ref2, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9886826/" },
   { img: ref3, link: "https://pubmed.ncbi.nlm.nih.gov/35441587/" },
@@ -17,7 +27,7 @@ const smriRefs = [
   { img: ref5, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8556985/" },
 ];
 
-const fmriRefs = [
+const fmriRefs: Reference[] = [
   { img: ref1, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5135290/" },
   { img: ref2, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7724147/" },
   { img: ref3, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8288085/" },
@@ -25,7 +35,7 @@ const fmriRefs = [
   { img: ref5, link: "https://pubmed.ncbi.nlm.nih.gov/28011131/" },
 ];
 
-const dtiRefs = [
+const dtiRefs: Reference[] = [
   { img: ref1, link: "https://pubmed.ncbi.nlm.nih.gov/28288855/" },
   { img: ref2, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9117206/" },
   { img: ref3, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8214122/" },
@@ -33,7 +43,7 @@ const dtiRefs = [
   { img: ref5, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10089087/" },
 ];
 
-const mrsRefs = [
+const mrsRefs: Reference[] = [
   { img: ref1, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9332487/" },
   { img: ref2, link: "https://onlinelibrary.wiley.com/doi/10.1111/pcn.13463" },
   { img: ref3, link: "https://www.sciencedirect.com/science/article/pii/S0889159123002817?via%3Dihub" },
@@ -41,7 +51,8 @@ const mrsRefs = [
   { img: ref5, link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9332487/" },
 ];
 
-const ReferenceGallery = ({ data }) => (
+// ✅ Componente tipado correctamente
+const ReferenceGallery: FC<ReferenceGalleryProps> = ({ data }) => (
   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 mt-8">
     {data.map((ref, index) => (
       <a
@@ -63,6 +74,7 @@ const ReferenceGallery = ({ data }) => (
   </div>
 );
 
+// ✅ Componente principal — sin ningún cambio funcional o visual
 export default function UsoImportancia() {
   return (
     <Layout>
@@ -73,7 +85,6 @@ export default function UsoImportancia() {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-
           {/* === RM estructural === */}
           <div className="bg-[#0c0c0f]/90 rounded-2xl p-8 border border-[#1a1a1a] shadow-[0_0_30px_rgba(102,255,227,0.3)]
                           hover:shadow-[0_0_50px_rgba(102,255,227,0.8)] transition-all duration-500 transform hover:scale-[1.03]">
@@ -112,7 +123,7 @@ export default function UsoImportancia() {
                 La fMRI mapea actividad y conectividad; en esquizofrenia predominan la hipoconectividad de red por defecto, red cingulada y redes fronto-parietales, alteraciones de la comunicación CPF–hipocampo, inestabilidad de estados de conectividad y hipofrontalidad (menor activación prefrontal) durante tareas. También se describen hiperactivación hipocampal en subgrupos y activaciones aumentadas en corteza auditiva y área de Broca durante alucinaciones auditivas.
               </p>
               <p>
-                <strong className="text-[#b28aff]">Por qué ocurre:</strong>estos patrones de red encajan con una hipótesis de desconexión donde pequeñas alteraciones sinápticas y de neurotransmisión (ver MRS) comprometen la sincronía entre nodos prefrontales, temporales y límbicos. El hipocampopuede oscilar entre hipo y hiperactivación, modulando la salida hacia sistemas de integración sensorial y control ejecutivo; la inestabilidad de estados de conectividad que se reporta traduce esa variabilidad de acoplamiento dinámico.
+                <strong className="text-[#b28aff]">Por qué ocurre:</strong> estos patrones de red encajan con una hipótesis de desconexión donde pequeñas alteraciones sinápticas y de neurotransmisión (ver MRS) comprometen la sincronía entre nodos prefrontales, temporales y límbicos. El hipocampo puede oscilar entre hipo y hiperactivación, modulando la salida hacia sistemas de integración sensorial y control ejecutivo; la inestabilidad de estados de conectividad que se reporta traduce esa variabilidad de acoplamiento dinámico.
               </p>
               <h4 className="text-[#b28aff] font-semibold mt-4">fMRI en FEP</h4>
               <ul className="list-disc ml-6 space-y-1">
@@ -131,7 +142,7 @@ export default function UsoImportancia() {
             <ReferenceGallery data={fmriRefs} />
           </div>
 
-          {/* === DTI completo con TODO lo que me diste === */}
+          {/* === DTI === */}
           <div className="bg-[#0c0c0f]/90 rounded-2xl p-8 border border-[#1a1a1a] shadow-[0_0_30px_rgba(95,255,210,0.3)]
                           hover:shadow-[0_0_50px_rgba(95,255,210,0.8)] transition-all duration-500 transform hover:scale-[1.03]">
             <h3 className="text-2xl font-orbitron font-bold text-[#5fffd2] mb-4">
@@ -164,7 +175,7 @@ export default function UsoImportancia() {
             <ReferenceGallery data={dtiRefs} />
           </div>
 
-          {/* === MRS completo con TODO lo que me diste === */}
+          {/* === MRS === */}
           <div className="bg-[#0c0c0f]/90 rounded-2xl p-8 border border-[#1a1a1a] shadow-[0_0_30px_rgba(255,121,198,0.3)]
                           hover:shadow-[0_0_50px_rgba(255,121,198,0.8)] transition-all duration-500 transform hover:scale-[1.03]">
             <h3 className="text-2xl font-orbitron font-bold text-[#ff79c6] mb-4">

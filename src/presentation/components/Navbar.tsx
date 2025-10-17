@@ -6,7 +6,8 @@ export default function Navbar() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const navItem = (to, label) => (
+  // ✅ Agregar tipos explícitos
+  const navItem = (to: string, label: string) => (
     <Link
       key={to}
       to={to}
