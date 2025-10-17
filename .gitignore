@@ -1,0 +1,49 @@
+# === Logs ===
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# === Dependencias y compilaciones ===
+node_modules
+dist
+dist-ssr
+.vite/
+.cache/
+
+# === Archivos locales y entorno ===
+*.local
+.env
+.env.local
+.env.*.local
+
+# === Editor directories and files ===
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# === Archivos temporales y backups ===
+*.tmp
+*.bak
+*.swp
+
+# === Archivos del sistema ===
+Thumbs.db
+desktop.ini
+
+# === Cobertura de tests ===
+coverage/
+*.lcov
+
+# === Archivos de lock opcionales ===
+package-lock.json
+pnpm-lock.yaml
